@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>HomePredict_Prediction</title>
+ <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+<img src="https://www.homecredit.net/~/media/Images/H/Home-Credit-Group/inner-banner/about-us-landing-page.jpg?h=455&la=en&w=668" alt="Home_credit_img" width="500" height="700" align="left">
+<img src="https://cdn.dnaindia.com/sites/default/files/styles/full/public/2018/11/22/756882-loan-110216.jpg" alt="Home_credit_img" width="400" height="600" align="right">
+
+<body>
+<h2 style="background-color:MediumSeaGreen;"  >Home Credit Prediction</h2>
+
+ <div class="login">
+	
+	
+	<p align="right">Serious complication for loan providers(Banking) is to find out the Loan applicants who are very likely to repay the loan.If the loan provider predicted the faithful customer, they will gain more profit and  more imporatanly they will avoid losses.</p>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input id="gfg" type="number" name="customer_id" placeholder="CUSTOMER_ID" min="100002" max="456255" required="required" />
+		
+		<button type="submit" onclick="myFunction()" class="btn btn-primary btn-block btn-large">Predict</button>
+		
+		
+		<p style="background-color:Tomato;" >An message will display of ERROR, if the number 
+		is lesser than 100002 or greater than 456255</p> 
+		<p id="geeks"></p> 
+
+		<script> 
+			function myFunction() { 
+				var inpObj = document.getElementById("gfg"); 
+				if (!inpObj.checkValidity()) { 
+					document.getElementById("geeks") 
+							.innerHTML = inpObj.validationMessage; 	
+				} else { 
+					document.getElementById("geeks") 
+							.innerHTML = "Input is valid, model execution is in progress....... please wait "; 
+
+	
+				} 
+			} 
+		</script> 
+		
+		
+   
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
